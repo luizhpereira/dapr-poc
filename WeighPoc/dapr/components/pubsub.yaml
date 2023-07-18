@@ -1,0 +1,20 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: mqtt-pubsub
+spec:
+  type: pubsub.mqtt
+  version: v1
+  metadata:
+    - name: consumerID
+      value: "{uuid}"
+    - name: url
+      value: "tcp://newest:1Cachapuz!@192.168.2.148:11883"
+    - name: qos
+      value: 1
+    - name: retain
+      value: "false"
+    - name: cleanSession
+      value: "false"
+    - name: backoffMaxRetries
+      value: "0"

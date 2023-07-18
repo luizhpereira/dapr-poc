@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{6AFFDC3B-AE82-4953-98F1-E8783A8266BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DF454D78-0446-4A01-8ACB-D97DAAAA3A96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{ACAA2C8B-0E56-4C15-AB39-AEE27D98ED4B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebFrontEnd", "WebFrontEnd", "{3774611E-3D73-40D9-BE93-6BB891D5F7C7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebFrontEnd", "src\services\WebFrontEnd\WebFrontEnd.csproj", "{EC6A5C5F-9072-41FD-84C5-F4D9DBBB443F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebAPI", "WebAPI", "{F4B38ABB-59A6-490E-B589-CB799C3C46C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "src\services\WebAPI\WebAPI.csproj", "{0C225EED-DF09-47AF-98DB-DBCEAB3DC65E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{E8BAF116-2E72-4D77-BAAA-00D71B8D0E35}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\components\lockredis.yaml = dapr\components\lockredis.yaml
+		dapr\components\pubsub.yaml = dapr\components\pubsub.yaml
+		dapr\components\pubsubredis.yaml = dapr\components\pubsubredis.yaml
+		dapr\components\statestore.yaml = dapr\components\statestore.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configuration", "configuration", "{0C803335-5764-4512-B237-7247C06D7431}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\configuration\config.yaml = dapr\configuration\config.yaml
+	EndProjectSection
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{112D7856-A7EC-4426-8061-8203C26FBA17}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gRPCServer", "gRPCServer", "{37FAB1B5-D187-46B0-8BCE-751A4729E792}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcServer", "src\services\gRPCServer\GrpcServer\GrpcServer.csproj", "{589E2AEA-9385-44F0-9C36-8533A3B9494F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC6A5C5F-9072-41FD-84C5-F4D9DBBB443F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC6A5C5F-9072-41FD-84C5-F4D9DBBB443F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC6A5C5F-9072-41FD-84C5-F4D9DBBB443F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC6A5C5F-9072-41FD-84C5-F4D9DBBB443F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C225EED-DF09-47AF-98DB-DBCEAB3DC65E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C225EED-DF09-47AF-98DB-DBCEAB3DC65E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C225EED-DF09-47AF-98DB-DBCEAB3DC65E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C225EED-DF09-47AF-98DB-DBCEAB3DC65E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{112D7856-A7EC-4426-8061-8203C26FBA17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{112D7856-A7EC-4426-8061-8203C26FBA17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{112D7856-A7EC-4426-8061-8203C26FBA17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{112D7856-A7EC-4426-8061-8203C26FBA17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{589E2AEA-9385-44F0-9C36-8533A3B9494F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{589E2AEA-9385-44F0-9C36-8533A3B9494F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{589E2AEA-9385-44F0-9C36-8533A3B9494F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{589E2AEA-9385-44F0-9C36-8533A3B9494F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ACAA2C8B-0E56-4C15-AB39-AEE27D98ED4B} = {DF454D78-0446-4A01-8ACB-D97DAAAA3A96}
+		{3774611E-3D73-40D9-BE93-6BB891D5F7C7} = {ACAA2C8B-0E56-4C15-AB39-AEE27D98ED4B}
+		{EC6A5C5F-9072-41FD-84C5-F4D9DBBB443F} = {3774611E-3D73-40D9-BE93-6BB891D5F7C7}
+		{F4B38ABB-59A6-490E-B589-CB799C3C46C3} = {ACAA2C8B-0E56-4C15-AB39-AEE27D98ED4B}
+		{0C225EED-DF09-47AF-98DB-DBCEAB3DC65E} = {F4B38ABB-59A6-490E-B589-CB799C3C46C3}
+		{E8BAF116-2E72-4D77-BAAA-00D71B8D0E35} = {6AFFDC3B-AE82-4953-98F1-E8783A8266BE}
+		{0C803335-5764-4512-B237-7247C06D7431} = {6AFFDC3B-AE82-4953-98F1-E8783A8266BE}
+		{37FAB1B5-D187-46B0-8BCE-751A4729E792} = {ACAA2C8B-0E56-4C15-AB39-AEE27D98ED4B}
+		{589E2AEA-9385-44F0-9C36-8533A3B9494F} = {37FAB1B5-D187-46B0-8BCE-751A4729E792}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA1E0FD9-B2C2-45FB-A978-ADD480F4E869}
+	EndGlobalSection
+EndGlobal

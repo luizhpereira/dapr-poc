@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option csharp_namespace = "GrpcServer";
+
+package weigh;
+
+// The Weighing service definition.
+service Weighing {
+  // setWeighing
+  rpc SetWeighingStream (stream WeighingRequest) returns (stream WeighingReply);
+}
+
+// The request message containing the user's name.
+message WeighingRequest {
+  string state = 1;
+  int32 weigh = 2;
+  string print = 3;
+}
+
+// The response message containing the greetings.
+message WeighingReply {
+  string message = 1;
+  string status = 2;
+}

@@ -1,0 +1,86 @@
+version: '3.4'
+
+services:
+  grpcserver:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+    ports:
+      - "3501:80"
+      - "51003:50001"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  grpcserver-dapr:
+    command: [ "./daprd", 
+    "-app-id", "GrpcServer", 
+    "-app-protocol", "grpc",
+    "-app-port", "80", 
+    "-placement-host-address", "dapr-placement:50000",
+    "-components-path", "/components",
+    "-config", "/configuration/config.yaml" ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+
+  webfrontend:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+    ports:
+      - "5555:80"
+      - "51001:50001"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+
+  webfrontend-dapr:
+    command: [ "./daprd", 
+    "-app-id", "WebFrontEnd", 
+    "-app-protocol", "grpc",
+    "-app-port", "80", 
+    "-placement-host-address", "dapr-placement:50000",
+    "-components-path", "/components",
+    "-config", "/configuration/config.yaml" ]
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+
+  webapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+    ports:   
+      - "3500:3500"
+      - "51002:50001"
+
+  webapi-dapr:
+    command: [ "./daprd", 
+    "-app-id", "WebAPI", 
+    "-app-port", "80",
+    "-dapr-http-port", "3500",
+    "-placement-host-address", "dapr-placement:50000", 
+    "-components-path", "/components", 
+    "-config", "/configuration/config.yaml"]    
+    volumes:
+      - "./dapr/components/:/components"
+      - "./dapr/configuration/:/configuration"
+
+  dapr-placement:
+    command: ["./placement", "-port", "50000", "-log-level", "debug"]
+    ports:
+      - "50000:50000"
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "5379:6379"
+
+  #rabbitmq:
+  #  ports:
+  #    - "5672:5672"
+
+  zipkin:
+    ports:
+      - "5411:9411"

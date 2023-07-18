@@ -1,0 +1,78 @@
+version: '3.4'
+
+services:
+  grpcserver:
+    image: ${DOCKER_REGISTRY-}grpcserver
+    build:
+      context: .
+      dockerfile: src/services/gRPCServer/GrpcServer/Dockerfile
+    networks:
+      - newest-dapr
+    depends_on:
+      - redis
+      - dapr-placement
+
+  grpcserver-dapr:
+    image: "daprio/daprd:latest"    
+    network_mode: "service:grpcserver"
+    depends_on:
+      - grpcserver
+
+  webfrontend:
+    image: ${DOCKER_REGISTRY-}webfrontend
+    build:
+      context: .
+      dockerfile: src/services/WebFrontEnd/Dockerfile
+    networks:
+      - newest-dapr
+    depends_on:
+      - redis
+      - dapr-placement
+
+  webfrontend-dapr:
+    image: "daprio/daprd:latest"    
+    network_mode: "service:webfrontend"
+    depends_on:
+      - webfrontend
+
+  webapi:
+    image: ${DOCKER_REGISTRY-}webapi
+    build:
+      context: .
+      dockerfile: src/services/WebAPI/Dockerfile
+    networks:
+      - newest-dapr
+    depends_on:
+      - redis
+      - dapr-placement
+
+  webapi-dapr:
+    image: "daprio/daprd:latest"    
+    network_mode: "service:webapi"
+    depends_on:
+      - webapi
+
+  dapr-placement:
+    image: "daprio/dapr"
+    networks:
+      - newest-dapr
+
+  redis:
+    image: "redis:alpine"
+    networks:
+      - newest-dapr
+
+  #rabbitmq:
+  #  image: rabbitmq:3-management-alpine
+  #  networks:
+  #    - newest-dapr
+
+  zipkin:
+    image: "openzipkin/zipkin-slim"
+    networks:
+      - newest-dapr
+
+networks:
+  newest-dapr:
+
+

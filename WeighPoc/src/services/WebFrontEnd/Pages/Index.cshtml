@@ -1,0 +1,36 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    @if (ViewData["LastWeighingRegistries"] != null)
+    {        
+        @foreach (var weighingRegistry in (IEnumerable<WeighingRegistry>)ViewData["LastWeighingRegistries"]!)
+        {
+            <p>OLDEST WEIGHING - Date: @weighingRegistry.Date | Weigh: @weighingRegistry.Weigh | Tenant @weighingRegistry.Tenant | Kiosk: @weighingRegistry.Kiosk</p>
+        }
+    }
+
+    @if (ViewData["WeighingRegistriesData"]!= null)
+    {
+        
+        @foreach (var weighingRegistry in (IEnumerable<WeighingRegistry>)ViewData["WeighingRegistriesData"]!)
+        {
+            <p>NEWEST WEIGHING - Date: @weighingRegistry.Date | Weigh: @weighingRegistry.Weigh | Tenant @weighingRegistry.Tenant | Kiosk: @weighingRegistry.Kiosk</p>
+        }
+    }
+
+    @if (ViewData["gRPCReply"] != null)
+    {
+        @foreach (var gRPCReply in (List<HelloReply>)ViewData["gRPCReply"]!)
+        {
+            <p>gPRC Reply: @gRPCReply.Message</p>
+        }
+    }
+
+</div>
